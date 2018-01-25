@@ -1,0 +1,11 @@
+{
+  "name": "vue-schema-form",
+  "version": "0.1.0",
+  "description": "Generate and validate forms from a JSON schema in a breeze",
+  "main": "src/components/SchemaForm.vue",
+  "dependencies": {
+    "map-to-object": "git+ssh://git@git.delegateip.com:synbioz/map-to-object.git"
+  },
+  "author": "Tom Panier <tpanier@synbioz.com>",
+  "license": "UNLICENSED"
+}
