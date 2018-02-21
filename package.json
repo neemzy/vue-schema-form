@@ -3,9 +3,37 @@
   "version": "0.1.0",
   "description": "Generate and validate forms from a JSON schema in a breeze",
   "main": "src/components/SchemaForm.vue",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "map-to-object": "git+ssh://git@git.delegateip.com:synbioz/map-to-object.git"
   },
+  "devDependencies": {
+    "babel-jest": "^22.4.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.0",
+    "vue": "^2.5.13",
+    "vue-jest": "^2.1.0",
+    "vue-template-compiler": "^2.5.13"
+  },
   "author": "Tom Panier <tpanier@synbioz.com>",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "setupFiles": [
+      "./test/setup.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/?!(map-to-object)"
+    ]
+  }
 }

@@ -35,7 +35,10 @@ export default {
       type: String,
       default: ''
     },
-    validity: ValidityState
+    //validity: ValidityState
+    // As of now, JSDOM doesn't support Validity API
+    // https://github.com/jsdom/jsdom/issues/544
+    validity: null
   },
   computed: {
     fieldProps() {
