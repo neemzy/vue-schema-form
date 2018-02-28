@@ -4,10 +4,10 @@
  * @param {Object} node
  * @param {String} fieldName
  *
- * @return {Object|Boolean} Node or false if it wasn't found
+ * @return {(Object|Boolean)} Node or false if it wasn't found
  */
 export default function findFieldInNode(node, fieldName) {
-  if ('children' in node) {
+  if ("children" in node) {
     if (fieldName in node.children) {
       return node.children[fieldName];
     }

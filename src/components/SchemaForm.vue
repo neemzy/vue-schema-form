@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import mapToObject from 'map-to-object';
-import findFieldInNode from '../findFieldInNode';
-import SchemaFormField from './SchemaFormField';
+import mapToObject from "map-to-object";
+import findFieldInNode from "../findFieldInNode";
+import SchemaFormField from "./SchemaFormField";
 
 export default {
   props: {
@@ -33,7 +33,7 @@ export default {
     return {
       fields: mapToObject(this.schema, field => ({
         [field.name]: {
-          type: field.type || 'text',
+          type: field.type || "text",
           value: field.value,
           checked: field.checked,
           validity: null
@@ -59,10 +59,10 @@ export default {
         const fields = Object.assign({}, this.fields);
         let isValid = true;
 
-        for (let fieldName in fields) {
+        for (const fieldName in fields) {
           let node = this.$refs[fieldName][0].$el;
 
-          if (fields[fieldName].type === 'radio' || typeof this.renderChild === 'function') {
+          if (fields[fieldName].type === "radio" || typeof this.renderChild === "function") {
             node = findFieldInNode(node, fieldName);
           }
 
@@ -90,7 +90,7 @@ export default {
     },
 
     onSubmit() {
-      this.$emit('submit', this.validate());
+      this.$emit("submit", this.validate());
     }
   },
   components: { SchemaFormField }

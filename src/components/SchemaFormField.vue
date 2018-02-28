@@ -9,7 +9,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'text'
+      default: "text"
     },
     options: {
       type: Array,
@@ -21,7 +21,7 @@ export default {
     },
     value: {
       type: String,
-      default: ''
+      default: ""
     },
     checked: {
       type: Boolean,
@@ -33,9 +33,9 @@ export default {
     },
     pattern: {
       type: String,
-      default: ''
+      default: ""
     },
-    //validity: ValidityState
+    // validity: ValidityState
     // As of now, JSDOM doesn't support Validity API
     // https://github.com/jsdom/jsdom/issues/544
     validity: null
@@ -48,10 +48,10 @@ export default {
       return props;
     },
     isSingleInput() {
-      return !(['select', 'textarea', 'radio'].includes(this.type));
+      return !["select", "textarea", "radio"].includes(this.type);
     },
     isRadio() {
-      return this.type === 'radio';
+      return this.type === "radio";
     }
   },
   methods: {
@@ -60,7 +60,7 @@ export default {
      */
     emitChange(event) {
       event.preventDefault();
-      this.$emit('change', this.name, { value: event.target.value, checked: event.target.checked });
+      this.$emit("change", this.name, { value: event.target.value, checked: event.target.checked });
     },
 
     /**
@@ -70,9 +70,9 @@ export default {
      */
     createOwnElement(createElement) {
       const node = this.isSingleInput
-        ? 'input'
+        ? "input"
         : this.isRadio
-          ? 'div'
+          ? "div"
           : this.type;
 
       const attrs = {};
@@ -85,7 +85,7 @@ export default {
       if (this.isSingleInput) {
         attrs.type = this.type;
         attrs.value = this.value;
-      } else if (this.type === 'select') {
+      } else if (this.type === "select") {
         attrs.multiple = this.multiple;
       }
 
@@ -93,27 +93,27 @@ export default {
         attrs.pattern = this.pattern;
       }
 
-      if (this.type === 'checkbox') {
+      if (this.type === "checkbox") {
         attrs.checked = this.checked;
       }
 
       let content = null;
 
-      if (this.type === 'select') {
-        content = this.options.map(option => createElement('option', {
+      if (this.type === "select") {
+        content = this.options.map(option => createElement("option", {
           attrs: {
             value: option.value,
             selected: option.value === this.value
           }
         }, option.label));
-      } else if (this.type === 'textarea') {
+      } else if (this.type === "textarea") {
         content = this.value;
       } else if (this.isRadio) {
         content = this.options.map(option => {
-          const element = createElement('input', {
+          const element = createElement("input", {
             attrs: {
               name: this.name,
-              type: 'radio',
+              type: "radio",
               value: option.value,
               checked: option.value === this.value,
               required: this.required
@@ -121,11 +121,11 @@ export default {
             on: { input: this.emitChange }
           });
 
-          if (typeof this.radioProxy === 'function') {
+          if (typeof this.radioProxy === "function") {
             return this.radioProxy(createElement, element, option.label);
           }
 
-          return createElement('label', [element, option.label])
+          return createElement("label", [element, option.label]);
         });
       }
 
@@ -147,7 +147,7 @@ export default {
   render(createElement) {
     const element = this.createOwnElement(createElement);
 
-    if (typeof this.renderProxy === 'function') {
+    if (typeof this.renderProxy === "function") {
       return this.renderProxy(createElement, element, this.fieldProps);
     }
 
