@@ -4,7 +4,7 @@
   "description": "Generate and validate forms from a JSON schema in a breeze",
   "main": "src/components/SchemaForm.vue",
   "scripts": {
-    "lint": "eslint -c node_modules/linters/.eslintrc.js --ext .js,.vue --plugin html --max-warnings=0 src test",
+    "lint": "eslint -c node_modules/linters/.eslintrc.js --ext .js,.vue --max-warnings=0 src test",
     "test": "jest"
   },
   "dependencies": {
