@@ -5,7 +5,8 @@
   "main": "src/components/SchemaForm.vue",
   "scripts": {
     "lint": "eslint -c node_modules/linters/.eslintrc.js --ext .js,.vue --max-warnings=0 src test",
-    "test": "jest"
+    "test": "jest",
+    "prepush": "npm run lint"
   },
   "dependencies": {
     "map-to-object": "git+ssh://git@git.delegateip.com:synbioz/map-to-object.git"
@@ -15,6 +16,7 @@
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.18.1",
     "eslint-plugin-html": "^4.0.2",
+    "husky": "^0.14.3",
     "jest": "^22.4.0",
     "linters": "git+ssh://git@git.delegateip.com:synbioz/linters.git",
     "vue": "^2.5.13",
