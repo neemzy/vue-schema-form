@@ -1,8 +1,14 @@
 <script>
 export default {
   props: {
-    renderProxy: Function,
-    radioProxy: Function,
+    renderProxy: {
+      type: Function,
+      default: null
+    },
+    radioProxy: {
+      type: Function,
+      default: null
+    },
     name: {
       type: String,
       required: true
@@ -35,10 +41,13 @@ export default {
       type: String,
       default: ""
     },
-    // validity: ValidityState
-    // As of now, JSDOM doesn't support Validity API
-    // https://github.com/jsdom/jsdom/issues/544
-    validity: null
+    validity: {
+      //type: ValidityState,
+      // As of now, JSDOM doesn't support Validity API
+      // https://github.com/jsdom/jsdom/issues/544
+      type: null,
+      default: null
+    }
   },
   computed: {
     fieldProps() {

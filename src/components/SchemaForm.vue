@@ -26,8 +26,14 @@ export default {
       type: Array,
       required: true
     },
-    renderChild: Function,
-    renderRadio: Function
+    renderChild: {
+      type: Function,
+      default: null
+    },
+    renderRadio: {
+      type: Function,
+      default: null
+    }
   },
   data() {
     return {
