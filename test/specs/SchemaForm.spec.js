@@ -49,6 +49,19 @@ const schema = [
   }
 ];
 
+const badSchema = [
+  {
+    name: "field1",
+    value: "Hello",
+    required: true
+  },
+  {
+    name: "field2",
+    value: "",
+    required: true
+  }
+];
+
 function renderChild(createElement, element, field) {
   return createElement("div", { class: "foo" }, [
     createElement("p", field.name),
@@ -127,25 +140,41 @@ describe("SchemaForm", () => {
   });
 
   it("should correctly emit validity states for form elements", () => {
-    // const vm = new Constructor({ propsData: { schema } }).$mount();
+    const vm = new Constructor({ propsData: { schema: badSchema } }).$mount();
 
-    // As of now, JSDOM doesn't support ValidityState API
-    // https://github.com/jsdom/jsdom/issues/544
-
-    // TODO: check yielded value with vm.validate().catch(fields => { ... });
+    vm.validate()
+      .then(() => {
+        expect(true).toBe(false); // this should not be executed
+      })
+      .catch(fields => {
+        expect(fields.field1.validity.valid).toBe(true);
+        expect(fields.field2.validity.valid).toBe(false);
+        expect(fields.field2.validity.valueMissing).toBe(true);
+      });
   });
 
-  it("should correctly display validity state for form elements", () => {
-    // const vm = new Constructor({ propsData: { schema, renderChild } });
-    // vm.$slots.default = [vm.$createElement(Vue.compile("<button type=\"submit\">Submit</button>"))];
-    // vm.$mount();
+  it("should correctly display validity state for form elements", done => {
+    const vm = new Constructor({ propsData: { schema: badSchema, renderChild } });
+    vm.$on("submit", validation => validation.catch(fields => {})); // we have to catch the Promise rejection
+    vm.$mount();
 
-    // As of now, JSDOM doesn't support ValidityState API
-    // https://github.com/jsdom/jsdom/issues/544
+    vm.$el.dispatchEvent(new window.Event("submit"));
 
-    // TODO:
-    // - Fill in some (but not all) required fields
-    // - Simulate click event on button
-    // - Check vm.$el.outerHTML for "YEAH" / "NOPE"
+    vm.$nextTick(() => {
+      // Remove hyperform extra attributes
+      Array.from(vm.$el.querySelectorAll("input")).forEach(input => {
+        input.removeAttribute("class");
+        input.removeAttribute("aria-invalid");
+      });
+
+      expect(vm.$el.innerHTML).toEqual([
+        "<div class=\"foo\"><p>field1</p><label class=\"bar\"><p>YEAH</p>",
+        "<input name=\"field1\" required=\"required\" type=\"text\" value=\"Hello\"></label></div>",
+        "<div class=\"foo\"><p>field2</p><label class=\"bar\"><p>NOPE</p>",
+        "<input name=\"field2\" required=\"required\" type=\"text\" value=\"\"></label></div>"
+      ].join(""));
+
+      done();
+    });
   });
 });

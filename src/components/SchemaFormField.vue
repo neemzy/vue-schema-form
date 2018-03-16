@@ -42,10 +42,7 @@ export default {
       default: ""
     },
     validity: {
-      //type: ValidityState,
-      // As of now, JSDOM doesn't support Validity API
-      // https://github.com/jsdom/jsdom/issues/544
-      type: null,
+      type: ValidityState,
       default: null
     }
   },
