@@ -39,9 +39,9 @@ The component expects an array of objects, each representing a field.
 
 ```js
 {
-  type: 'text',  // default; can be 'email', 'password'...
-  name: 'foo',   // directly passed to the underlying element
-  value: 'Hello' // must be a string; can of course be bound to your component's data
+  type: "text",  // default; can be "email", "password"...
+  name: "foo",   // directly passed to the underlying element
+  value: "Hello" // must be a string; can of course be bound to your component's data
 }
 ```
 
@@ -49,8 +49,8 @@ The component expects an array of objects, each representing a field.
 
 ```js
 {
-  type: 'checkbox',
-  name: 'bar',
+  type: "checkbox",
+  name: "bar",
   checked: true     // can be bound, too
 }
 ```
@@ -59,17 +59,17 @@ The component expects an array of objects, each representing a field.
 
 ```js
 {
-  type: 'select', // or 'radio'
-  name: 'baz',
-  multiple: true, // optional; false by default (only works for 'select')
+  type: "select", // or "radio"
+  name: "baz",
+  multiple: true, // optional; false by default (only works for "select")
   options: [{
-    label: 'One',
-    value: '1'    // must be a string
+    label: "One",
+    value: "1"    // must be a string
   }, {
-    label: 'Two',
-    value: '2'
+    label: "Two",
+    value: "2"
   }],
-  value: '2'      // currently selected option; can be bound as well (and must be a string, too)
+  value: "2"      // currently selected option; can be bound as well (and must be a string, too)
 }
 ```
 
@@ -95,8 +95,8 @@ onSubmit(validation) {
   validation
     .then(fields => { // success handler
       for (let fieldName in fields) {
-        console.log(fieldName, fields[fieldName].type === 'checkbox'
-          ? (fields[fieldName].checked ? 'checked' : 'not checked')
+        console.log(fieldName, fields[fieldName].type === "checkbox"
+          ? (fields[fieldName].checked ? "checked" : "not checked")
           : fields[fieldName].value
         );
       }
@@ -134,10 +134,10 @@ This function is used to wrap the rendered form element in any markup you need. 
 
 ```js
 renderChild(createElement, element, field) {
-  return createElement('div', { class: 'foo' }, [
-    createElement('p', field.name),
-    createElement('label', { class: 'bar' }, [
-      createElement('p', field.validity ? (field.validity.valid ? 'YEAH' : 'NOPE') : ''),
+  return createElement("div", { class: "foo" }, [
+    createElement("p", field.name),
+    createElement("label", { class: "bar" }, [
+      createElement("p", field.validity ? (field.validity.valid ? "YEAH" : "NOPE") : ""),
       element
     ])
   ]);
@@ -154,9 +154,9 @@ Radio buttons are handled in a specific way: by default, each is wrapped in a `<
 
 ```js
 renderRadio(createElement, element, label) {
-  return createElement('div', { class: 'baz' }, [
-    createElement('p', label),
-    createElement('span', { class: 'kek' }, [element])
+  return createElement("div", { class: "baz" }, [
+    createElement("p", label),
+    createElement("span", { class: "kek" }, [element])
   ]);
 }
 ```
@@ -166,6 +166,6 @@ renderRadio(createElement, element, label) {
 To run unit tests, do the following:
 
 ```
-$ npm install
+$ npm set registry https://npm.synbioz.com && npm install
 $ npm test
 ```

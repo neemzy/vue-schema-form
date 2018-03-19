@@ -9,7 +9,7 @@
     "prepush": "npm run lint"
   },
   "dependencies": {
-    "map-to-object": "git+ssh://git@git.delegateip.com:synbioz/map-to-object.git"
+    "map-to-object": "^0.1.0"
   },
   "devDependencies": {
     "babel-jest": "^22.4.0",
@@ -21,7 +21,7 @@
     "husky": "^0.14.3",
     "hyperform": "^0.9.9",
     "jest": "^22.4.0",
-    "linters": "git+ssh://git@git.delegateip.com:synbioz/linters.git",
+    "linters": "^0.1.0",
     "vue": "^2.5.13",
     "vue-jest": "^2.1.0",
     "vue-template-compiler": "^2.5.13"
