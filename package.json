@@ -1,6 +1,6 @@
 {
   "name": "vue-schema-form",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate and validate forms from a JSON schema in a breeze",
   "main": "src/components/SchemaForm.vue",
   "scripts": {
@@ -12,16 +12,18 @@
     "map-to-object": "^0.1.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.18.2",
+    "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-vue": "^4.3.0",
     "husky": "^0.14.3",
     "hyperform": "^0.9.9",
     "jest": "^22.4.0",
-    "linters": "^0.1.0",
+    "linters": "^0.1.3",
     "vue": "^2.5.13",
     "vue-jest": "^2.1.0",
     "vue-template-compiler": "^2.5.13"
