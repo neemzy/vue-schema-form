@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import mapToObject from "map-to-object";
 import findFieldInNode from "../findFieldInNode";
 import SchemaFormField from "./SchemaFormField";
 
@@ -37,14 +36,15 @@ export default {
   },
   data() {
     return {
-      fields: mapToObject(this.schema, field => ({
+      fields: this.schema.reduce((fields, field) => ({
+        ...fields,
         [field.name]: {
           type: field.type || "text",
           value: field.value,
           checked: field.checked,
           validity: null
         }
-      }))
+      }), {})
     };
   },
   computed: {

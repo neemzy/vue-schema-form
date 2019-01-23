@@ -23,12 +23,22 @@ Enter **vue-schema-form**: this library will handle **both rendering and clients
 - You're done!
 
 ```html
-<schema-form
-  :schema="..."
-  @submit="..."
->
-  <button type="submit">Clickey!</button>
-</schema-form>
+<template>
+  <SchemaForm
+    :schema="/* ... */"
+    @submit="/* ... */"
+  >
+    <button type="submit">Clickey!</button>
+  </SchemaForm>
+</template>
+
+<script>
+import SchemaForm from "vue-schema-form";
+
+export default {
+  components: { SchemaForm }
+};
+</script>
 ```
 
 ### The JSON schema
@@ -114,14 +124,14 @@ onSubmit(validation) {
 By default, the library uses minimal markup to render your form. Of course, it allows customization through the use of two extra props:
 
 ```html
-<schema-form
+<SchemaForm
   :schema="..."
   :renderChild="renderChild"
   :renderRadio="renderRadio"
   @submit="..."
 >
   <button type="submit">Clickey!</button>
-</schema-form>
+</SchemaForm>
 ```
 
 #### `renderChild`
@@ -169,3 +179,7 @@ To run unit tests, do the following:
 $ npm set registry https://npm.synbioz.com && npm install
 $ npm test
 ```
+
+## Roadmap
+
+- Use `ajv` to rely on JSON schema format instead of our custom one?

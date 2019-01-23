@@ -1,5 +1,3 @@
-/* global global */
-/* eslint-disable import/namespace */
 import Vue from "vue/dist/vue.common";
 import * as hyperform from "hyperform";
 
